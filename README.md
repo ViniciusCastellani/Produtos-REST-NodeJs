@@ -65,7 +65,7 @@ project
 
 1. **Clone the repository:**
    ```bash
-   git clone <REPOSITORY-URL>
+   git clone https://github.com/ViniciusCastellani/Produtos-REST-NodeJs.git
    cd Produtos-REST-NodeJs
    ```
 
