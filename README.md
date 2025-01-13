@@ -1,24 +1,24 @@
-# Projeto Básico de CRUD de Produtos com Node.js
+# Basic CRUD Project for Products with Node.js
 
-Este é um projeto simples desenvolvido em **Node.js** para cadastrar e listar produtos com ordenação pelo valor (do menor para o maior). Ele utiliza os métodos **GET** e **POST**, e inclui um frontend básico para interação com o servidor.
-
----
-
-## **Funcionalidades**
-
-- **Cadastro de Produtos:** Envia dados do produto ao servidor via POST.
-  - Campos do produto:
-    - Nome
-    - Descrição
-    - Valor
-    - Disponível para venda (sim/não)
-- **Listagem de Produtos:** Obtém todos os produtos cadastrados e os exibe ordenados pelo valor, do menor para o maior.
+This is a simple project built with **Node.js** to register and list products, sorting them by value (from lowest to highest). It uses **GET** and **POST** methods and includes a basic frontend to interact with the server.
 
 ---
 
-## **Arquitetura do Projeto**
+## **Features**
 
-### **Estrutura de Diretórios**
+- **Product Registration:** Sends product data to the server via POST.
+  - Product fields:
+    - Name
+    - Description
+    - Value
+    - Available for sale (yes/no)
+- **Product Listing:** Retrieves all registered products and displays them sorted by value, from lowest to highest.
+
+---
+
+## **Project Architecture**
+
+### **Directory Structure**
 
 ```
 project
@@ -37,127 +37,126 @@ project
     └── server.js
 ```
 
-### **Detalhes dos Arquivos**
+### **File Details**
 
 - **`server.js`**:
-  Arquivo principal que configura o servidor Express, define rotas principais e serve arquivos estáticos da pasta `public`.
+  The main file that configures the Express server, defines primary routes, and serves static files from the `public` folder.
 
 - **`routes/produtos.js`**:
-  Define os endpoints relacionados aos produtos:
-  - **POST `/produtos`**: Adiciona um novo produto.
-  - **GET `/produtos`**: Retorna todos os produtos cadastrados, ordenados pelo valor.
+  Defines endpoints related to products:
+  - **POST `/produtos`**: Adds a new product.
+  - **GET `/produtos`**: Returns all registered products, sorted by value.
 
 - **`public/html/index.html`**:
-  Página inicial com o formulário para cadastrar produtos.
+  The main page with a form for registering products.
 
 - **`public/html/produtos.html`**:
-  Página para listar os produtos cadastrados.
+  The page for listing registered products.
 
 - **`public/javascript/produtos.js`**:
-  Contém as funções JavaScript para enviar dados ao servidor e buscar produtos.
+  Contains JavaScript functions for sending data to the server and fetching products.
 
 - **`public/stylesheets/produtos.css`**:
-  Estilos CSS para as páginas HTML, incluindo responsividade e design.
+  CSS styles for the HTML pages, including responsiveness and design.
 
 ---
 
-## **Configuração do Ambiente**
+## **Environment Setup**
 
-1. **Clone o repositório:**
+1. **Clone the repository:**
    ```bash
-   git clone <URL-DO-REPOSITORIO>
-   cd project
+   git clone <REPOSITORY-URL>
+   cd Produtos-REST-NodeJs
    ```
 
-2. **Instale as dependências:**
+2. **Install dependencies:**
    ```bash
    npm install
    ```
 
-3. **Inicie o servidor:**
+3. **Start the server:**
    ```bash
    node src/server.js
    ```
 
-4. **Acesse o sistema no navegador:**
-   - Cadastro de produtos: [http://localhost:3000/html/index.html](http://localhost:3000/html/index.html)
-   - Listagem de produtos: [http://localhost:3000/html/produtos.html](http://localhost:3000/html/produtos.html)
+4. **Access the system in your browser:**
+   - Product registration: [http://localhost:3000/html/index.html](http://localhost:3000/html/index.html)
+   - Product listing: [http://localhost:3000/html/produtos.html](http://localhost:3000/html/produtos.html)
 
 ---
 
-## **Exemplos de Endpoints**
+## **Endpoint Examples**
 
 ### **POST `/produtos`**
-- **Descrição:** Adiciona um novo produto.
-- **Corpo da requisição:**
+- **Description:** Adds a new product.
+- **Request body:**
   ```json
   {
-    "nome": "Produto A",
-    "descricao": "Descricao do produto A",
+    "nome": "Product A",
+    "descricao": "Description of Product A",
     "valor": 100.50,
-    "disponivel": "Sim"
+    "disponivel": "Yes"
   }
   ```
-- **Resposta de sucesso:**
+- **Success response:**
   ```json
   {
-    "mensagem": "Produto cadastrado com sucesso!"
+    "message": "Product successfully registered!"
   }
   ```
 
 ### **GET `/produtos`**
-- **Descrição:** Retorna todos os produtos cadastrados, ordenados pelo valor.
-- **Exemplo de resposta:**
+- **Description:** Retrieves all registered products, sorted by value.
+- **Example response:**
   ```json
   [
     {
-      "nome": "Produto B",
-      "descricao": "Descricao do produto B",
+      "nome": "Product B",
+      "descricao": "Description of Product B",
       "valor": 50.0,
-      "disponivel": "Nao"
+      "disponivel": "No"
     },
     {
-      "nome": "Produto A",
-      "descricao": "Descricao do produto A",
+      "nome": "Product A",
+      "descricao": "Description of Product A",
       "valor": 100.5,
-      "disponivel": "Sim"
+      "disponivel": "Yes"
     }
   ]
   ```
 
 ---
 
-## **Frontend - Formulário de Cadastro (`index.html`)**
+## **Frontend - Registration Form (`index.html`)**
 
-O formulário permite cadastrar produtos com os seguintes campos:
+The form allows registering products with the following fields:
 
-- Nome
-- Descrição
-- Valor
-- Disponível para venda (sim/não)
+- Name
+- Description
+- Value
+- Available for sale (yes/no)
 
-Exemplo de código:
+Example code:
 
 ```html
 <form id="formularioProd">
-  <label for="nome">Nome:</label><br>
+  <label for="nome">Name:</label><br>
   <input type="text" id="nome" required><br><br>
-  <label for="descricao">Descrição:</label><br>
+  <label for="descricao">Description:</label><br>
   <textarea id="descricao" required></textarea><br><br>
-  <label for="valor">Valor:</label><br>
+  <label for="valor">Value:</label><br>
   <input type="number" id="valor" step="0.01" required><br><br>
-  <p>Disponível para venda?</p>
+  <p>Available for sale?</p>
   <select id="disponivelVenda">
-    <option value="Sim">Sim</option>
-    <option value="Nao">Nao</option>
+    <option value="Sim">Yes</option>
+    <option value="Nao">No</option>
   </select><br><br>
-  <button id="botaoSubmit" type="button" onclick="enviarForm()">Enviar produto</button>
+  <button id="botaoSubmit" type="button" onclick="enviarForm()">Submit product</button>
 </form>
 ```
 
 ---
 
-## **Considerações Finais**
+## **Final Considerations**
 
-Este projeto demonstra como criar uma aplicação básica de CRUD com Node.js e Express, usando boas práticas na organização de arquivos e separação de responsabilidades. Pode ser facilmente expandido para incluir mais funcionalidades.
-
+This project demonstrates how to create a basic CRUD application using Node.js and Express, following good practices in file organization and separation of responsibilities. It can be easily expanded to include more features.
